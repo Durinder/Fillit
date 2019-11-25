@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 11:07:05 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/25 18:32:49 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/11/25 19:00:49 by bbehm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	main(int argc, char **argv)
 		ft_putendl(tetriminos[i]);
 		i++;
 	}
-	while (1) {};
+	if (!(ft_map_validator(tetriminos)))
+		ft_putendl("error");
+	//while (1) {};
 	return (0);
 }
