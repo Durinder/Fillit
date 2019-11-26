@@ -6,13 +6,13 @@
 /*   By: bbehm <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 11:07:10 by bbehm             #+#    #+#             */
-/*   Updated: 2019/11/25 19:01:13 by bbehm            ###   ########.fr       */
+/*   Updated: 2019/11/26 17:30:31 by bbehm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-int	ft_check_neighbours(char *map, int x)
+int	check_neighbours(char *map, int x)
 {
 	if (x < 14 && x > 4)
 	{
@@ -38,7 +38,7 @@ int	ft_check_neighbours(char *map, int x)
 	return (1);
 }
 
-int	ft_characters(char **map, int x, int y, int amount)
+int	check_characters(char **map, int x, int y, int amount)
 {
 	int count;
 
@@ -50,7 +50,7 @@ int	ft_characters(char **map, int x, int y, int amount)
 			if (map[y][x] == '#')
 			{
 				count++;
-				if (!(ft_check_neighbours(map[y], x)))
+				if (!(check_neighbours(map[y], x)))
 					return (0);
 			}
 			x++;
@@ -64,7 +64,7 @@ int	ft_characters(char **map, int x, int y, int amount)
 	return (1);
 }
 
-int	ft_map_validator(char **map)
+int	map_validator(char **map)
 {
 	int y;
 	int x;
@@ -75,7 +75,7 @@ int	ft_map_validator(char **map)
 	amount = 0;
 	while (map[amount])
 		amount++;
-	if (!(ft_characters(map, x, y, amount)))
+	if (!(check_characters(map, x, y, amount)))
 		return (0);
 	if (y > 25)
 		return (0);

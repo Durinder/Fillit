@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 13:37:40 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/25 19:02:14 by bbehm            ###   ########.fr       */
+/*   Updated: 2019/11/26 17:31:07 by bbehm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include "../libft/libft.h"
 
 char	**create_tetriminos(char *input);
-int		ft_map_validator(char **map);
+int		map_validator(char **map);
 
 #endif
