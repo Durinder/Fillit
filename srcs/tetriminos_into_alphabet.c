@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   tetriminos_into_alphabet.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/25 13:37:40 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/26 13:22:00 by jhallama         ###   ########.fr       */
+/*   Created: 2019/11/26 13:00:43 by jhallama          #+#    #+#             */
+/*   Updated: 2019/11/26 13:24:08 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
-# define BUFF_SIZE 1024
-# include "../libft/libft.h"
+#include "fillit.h"
 
-char	**create_tetriminos(char *input);
-int		ft_map_validator(char **map);
-void	tetriminos_into_alphabet(char **tetriminos);
+void	tetriminos_into_alphabet(char **tetriminos)
+{
+	char	alpha;
+	short	i;
+	short	j;
 
-#endif
+	alpha = 'A';
+	i = 0;
+	while (tetriminos[i])
+	{
+		j = 0;
+		while (tetriminos[i][j])
+		{
+			if (tetriminos[i][j] == '#')
+				tetriminos[i][j] = alpha;
+			j++;
+		}
+		i++;
+		alpha++;
+	}
+}
