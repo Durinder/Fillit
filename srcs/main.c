@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 11:07:05 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/26 13:21:18 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/11/27 12:03:13 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ int	main(int argc, char **argv)
 		}
 	}
 	int i = 0;
-	while (tetriminos[i])
-	{
-		ft_putendl(tetriminos[i]);
-		i++;
-	}
 	tetriminos_into_alphabet(tetriminos);
 	i = 0;
 	while (tetriminos[i])
@@ -53,8 +48,10 @@ int	main(int argc, char **argv)
 		ft_putendl(tetriminos[i]);
 		i++;
 	}
-	if (!(ft_map_validator(tetriminos)))
+	if (!(map_validator(tetriminos)))
 		ft_putendl("error");
-	while (1) {};
+	else
+		ft_putendl("Solver is not done yet!");
+	//while (1) {};
 	return (0);
 }
