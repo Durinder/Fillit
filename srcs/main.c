@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 11:07:05 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/27 15:57:24 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/11/28 10:33:22 by bbehm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char **argv)
 	int		ret;
 	t_map	map;
 	short	i;
+	//t_struct	*list;
 
 	if (argc != 2)
 	{
@@ -45,8 +46,11 @@ int	main(int argc, char **argv)
 	if (!(map_validator(tetriminos)))
 		ft_putendl("error");
 	else
+	{
+		tetriminos_into_alphabet(tetriminos);
+		//list = *list_maker(tetriminos, 4);
 		ft_putendl("Solver is not done yet!");
-	tetriminos_into_alphabet(tetriminos);
+	}
 //	int i = 0;
 //	while (tetriminos[i])
 //	{
@@ -60,6 +64,6 @@ int	main(int argc, char **argv)
 		ft_putstr(map.coordinates[i]);
 		i++;
 	}
-	while (1) {};
+	//while (1) {};
 	return (0);
 }

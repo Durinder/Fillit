@@ -6,7 +6,7 @@
 /*   By: bbehm <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 11:07:10 by bbehm             #+#    #+#             */
-/*   Updated: 2019/11/26 17:30:31 by bbehm            ###   ########.fr       */
+/*   Updated: 2019/11/28 10:33:55 by bbehm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_neighbours(char *map, int x)
 				&& map[x - 5] != '#')
 			return (0);
 	}
-	else if (x > 14)
+	else if (x > 14 && x < 18)
 	{
 		if (map[x + 1] != '#' && map[x - 1] != '#' && map[x - 5] != '#')
 			return (0);
@@ -35,6 +35,11 @@ int	check_neighbours(char *map, int x)
 		if (map[x + 1] != '#' && map[x + 5] != '#')
 			return (0);
 	}
+	else if (x == 18)
+	{
+		if (map[x - 1] != '#' && map[x - 5] != '#')
+			return (0);
+	}
 	return (1);
 }
 
@@ -45,7 +50,7 @@ int	check_characters(char **map, int x, int y, int amount)
 	count = 0;
 	while (map && y < amount)
 	{
-		while (map[y][x] != '\0' && x < 19)
+		while (map[y][x] != '\0' && x < 20)
 		{
 			if (map[y][x] == '#')
 			{
