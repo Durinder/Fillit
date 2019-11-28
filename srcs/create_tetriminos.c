@@ -6,13 +6,14 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 12:35:23 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/25 18:35:20 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/11/28 16:14:41 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
+#include "fillit.h"
 
-void	copy_strings(char **array, char *input)
+void		copy_strings(char **array, char *input)
 {
 	short	i;
 	short	j;
@@ -39,7 +40,7 @@ void	copy_strings(char **array, char *input)
 	ft_strdel(&array[i]);
 }
 
-short	count_tetriminos(short len)
+short		count_tetriminos(short len)
 {
 	if (len > 545)
 		return (0);
@@ -49,25 +50,45 @@ short	count_tetriminos(short len)
 		return (len / 4 / 5);
 }
 
-short	count_length_check_errors(char *input)
+t_checklist	modify_checklist(char c, t_checklist check)
 {
-	short	len;
-
-	len = 0;
-	while (input[len] != '\0')
-	{
-		if (input[len] != '#' && input[len] != '.' && input[len] != '\n')
-			return (0);
-		if (len != 0 && (len - 20) % 21 == 0 && input[len] != '\n')
-		{
-			return (0);
-		}
-		len++;
-	}
-	return (len);
+	if (c == '.')
+		check.dot++;
+	else if (c == '#')
+		check.hash++;
+	else if (c == '\n')
+		check.nl++;
+	return (check);
 }
 
-char	**create_tetriminos(char *input)
+short		count_length_check_errors(char *input)
+{
+	short		i;
+	t_checklist	check;
+
+	i = -1;
+	check.dot = 0;
+	check.hash = 0;
+	check.nl = 0;
+	while (input[++i])
+	{
+		if (input[i] != '#' && input[i] != '.' && input[i] != '\n')
+			return (0);
+		check = modify_checklist(input[i], check);
+		if (check.nl == 4 || input[i + 1] == '\0')
+		{
+			if (check.dot != 12 || check.hash != 4 || (input[i + 1]
+					!= '\n' && input[i + 1] != '\0'))
+				return (0);
+			check.nl = -1;
+			check.dot = 0;
+			check.hash = 0;
+		}
+	}
+	return (i);
+}
+
+char		**create_tetriminos(char *input)
 {
 	char	**array;
 	short	len;

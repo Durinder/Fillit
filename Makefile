@@ -6,7 +6,7 @@
 #    By: jhallama <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 16:10:31 by jhallama          #+#    #+#              #
-#    Updated: 2019/11/28 10:08:29 by bbehm            ###   ########.fr        #
+#    Updated: 2019/11/28 16:06:09 by jhallama         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBFT = $(LIBFTSRC:%.c=libft/%.c)
 
 FILLIT = srcs/create_tetriminos.c srcs/main.c srcs/map_validator.c srcs/tetriminos_into_alphabet.c srcs/new_map.c srcs/struct_maker.c
 
-HEADERS = -I libft/libft.h
+HEADERS = -I libft/libft.h -I srcs/fillit.h
 
 LIBFTOBJ = $(LIBFTSRC:.c=.o)
 

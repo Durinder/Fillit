@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 13:37:40 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/28 10:07:27 by bbehm            ###   ########.fr       */
+/*   Updated: 2019/11/28 16:03:51 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define FILLIT_H
 # define BUFF_SIZE 1024
 # include "../libft/libft.h"
+
+typedef struct	s_checklist {
+	short	dot;
+	short	hash;
+	short	nl;
+}				t_checklist;
 
 typedef struct	s_map {
 	short	size;
