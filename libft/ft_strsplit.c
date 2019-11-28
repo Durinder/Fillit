@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 12:54:25 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/20 12:13:10 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/11/28 16:50:00 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static size_t	count_words(char const *s, char c)
 		}
 		i++;
 	}
-	return (counter);
+	return (counter + 1);
 }
 
 char			**ft_strsplit(char const *s, char c)
