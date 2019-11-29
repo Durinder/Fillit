@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:31:54 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/29 15:16:26 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/11/29 15:18:15 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ t_tetrimino *tetriminos_into_list(char **tetriminos)
 		push_back_piece(head);
 		i++;
 	}
+	ft_strdel(tetriminos);
 	return (head);
 }
