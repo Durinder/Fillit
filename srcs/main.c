@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 11:07:05 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/28 10:33:22 by bbehm            ###   ########.fr       */
+/*   Updated: 2019/11/29 15:30:50 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	int		ret;
 	t_map	map;
 	short	i;
-	//t_struct	*list;
+	t_tetrimino	*head;
 
 	if (argc != 2)
 	{
@@ -39,24 +39,24 @@ int	main(int argc, char **argv)
 		tetriminos = create_tetriminos(buf);
 		if (tetriminos == NULL)
 		{
-			ft_putendl("error");
+			ft_putendl("create_tetriminos error");
 			return (0);
 		}
 	}
 	if (!(map_validator(tetriminos)))
-		ft_putendl("error");
+		ft_putendl("HERE error");
 	else
 	{
 		tetriminos_into_alphabet(tetriminos);
 		//list = *list_maker(tetriminos, 4);
 		ft_putendl("Solver is not done yet!");
 	}
-//	int i = 0;
-//	while (tetriminos[i])
-//	{
-//		ft_putendl(tetriminos[i]);
-//		i++;
-//	}
+	i = 0;
+	while (tetriminos[i])
+	{
+		ft_putendl(tetriminos[i]);
+		i++;
+	}
 	map = new_map(tetriminos);
 	i = 0;
 	while (map.coordinates[i])
@@ -64,6 +64,12 @@ int	main(int argc, char **argv)
 		ft_putstr(map.coordinates[i]);
 		i++;
 	}
-	//while (1) {};
+	head = tetriminos_into_list(tetriminos);
+	while (head)
+	{
+		ft_putnbr(head->is_placed);
+		head = head->next;
+	}
+	while (1) {};
 	return (0);
 }

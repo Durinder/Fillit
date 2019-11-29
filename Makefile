@@ -6,7 +6,7 @@
 #    By: jhallama <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 16:10:31 by jhallama          #+#    #+#              #
-#    Updated: 2019/11/28 16:06:09 by jhallama         ###   ########.fr        #
+#    Updated: 2019/11/28 17:29:39 by jhallama         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIBFTSRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memch
 
 LIBFT = $(LIBFTSRC:%.c=libft/%.c)
 
-FILLIT = srcs/create_tetriminos.c srcs/main.c srcs/map_validator.c srcs/tetriminos_into_alphabet.c srcs/new_map.c srcs/struct_maker.c
+FILLIT = srcs/create_tetriminos.c srcs/main.c srcs/map_validator.c srcs/tetriminos_into_alphabet.c srcs/new_map.c srcs/list_maker.c
 
 HEADERS = -I libft/libft.h -I srcs/fillit.h
 
@@ -31,7 +31,7 @@ $(NAME):
 	gcc -Wall -Wextra -Werror -o $(NAME) $(LIBFTOBJ) $(FILLIT) $(HEADERS)
 
 clean:
-	/bin/rm -f $(LIBFTOBJ) create_tetriminos.o main.o map_validator.o tetriminos_into_alphabet.o new_map.o struct_maker.o
+	/bin/rm -f $(LIBFTOBJ) create_tetriminos.o main.o map_validator.o tetriminos_into_alphabet.o new_map.o list_maker.o
 
 fclean: clean
 	/bin/rm -f $(NAME)

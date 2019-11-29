@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 13:37:40 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/28 16:25:15 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/11/29 15:31:23 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,22 @@ typedef struct	s_map {
 	char	**coordinates;
 }				t_map;
 
-typedef struct	s_struct
-{
-	int		one[2];
-	int		two[2];
-	int		three[2];
-	int		four[2];
-	void	*next;
-}				t_struct;
+typedef struct	s_tetrimino {
+	short				is_placed;
+	int					one[2];
+	int					two[2];
+	int					three[2];
+	int					four[2];
+	char				alpha;
+	struct s_tetrimino	*next;
+}				t_tetrimino;
+
+
 
 char			**create_tetriminos(char *input);
 void			tetriminos_into_alphabet(char **tetriminos);
 int				map_validator(char **map);
-t_struct		**list_maker(char **tetrimino, int size);
 t_map			new_map(char **tetriminos);
+t_tetrimino		*tetriminos_into_list(char **tetriminos);
 
 #endif
