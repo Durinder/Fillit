@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:58:11 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/27 15:58:25 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/11/29 17:07:44 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ t_map	new_map(char **tetriminos)
 	t_map	map;
 
 	map.size = smallest_square(tetriminos);
-	map.coordinates = create_map(map.size);
+	map.xy = create_map(map.size);
 	return (map);
 }
