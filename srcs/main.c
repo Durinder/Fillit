@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 11:07:05 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/29 15:30:50 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/11/29 17:21:53 by bbehm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,25 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	head = tetriminos_into_list(tetriminos);
+
 	while (head)
 	{
 		ft_putnbr(head->is_placed);
 		head = head->next;
 	}
-	while (1) {};
+	/*
+	while (head)
+	{
+		ft_putnbr(head->one[0]);
+		ft_putnbr(head->one[1]);
+		ft_putnbr(head->two[0]);
+		ft_putnbr(head->two[1]);
+		ft_putnbr(head->three[0]);
+		ft_putnbr(head->three[1]);
+		ft_putnbr(head->four[0]);
+		ft_putnbr(head->four[1]);
+		head = head->next;
+	}*/
+//	while (1) {};
 	return (0);
 }

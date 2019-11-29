@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:31:54 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/29 16:49:42 by bbehm            ###   ########.fr       */
+/*   Updated: 2019/11/29 17:20:35 by bbehm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,37 +43,56 @@ static void	push_back_piece(t_tetrimino *head, int i)
 	while (current->next != NULL)
 		current = current->next;
 	current->next = new_piece;
-}/*
-static void fill_more(t_tetrimino *head, int *info)
-{
-
 }
 
-static void	fill_piece(t_tetrimino *head, char *tetri, int i)
+static void fill_more(t_tetrimino *head, int info[4][2], int i)
+{
+	while (i > 0)
+	{
+		head = head->next;
+		i--;
+	}
+	head->one[0] = info[0][0];
+	head->one[1] = info[0][1];
+	head->two[0] = info[1][0];
+	head->two[1] = info[1][1];
+	head->three[0] = info[2][0];
+	head->three[1] = info[2][1];
+	head->four[0] = info[3][0];
+	head->four[1] = info[3][1];
+}
+
+static void	fill_piece(t_tetrimino **head, char *tetri, int i)
 {
 	int x;
-	int *info[4][2];
+	int info[4][2];
 	int a;
+	int y;
 
 	x = 0;
-	a = 0;	
+	a = 0;
+	y = 0;	
 	while (tetri[x] != '\0')
 	{
-		while (tetri[x] <= 'Z' || tetri[x] >= 'A')
+		while (tetri[x] && (tetri[x] <= 'Z' || tetri[x] >= 'A'))
 		{
 			if (tetri[x] == '\n')
 				y++;
 			x++;
 		}
-		if (tetri[x] == 'A' + i)
+		if (tetri[x] == ('A' + i))
 		{
 			info[a][0] = y;
-			info[a++][1] = i;
+			info[a][1] = i;
 			i++;
+			a++;
+			x++;
 		}
-		fill_more(t_tetrimino *head, info);
+		fill_more(*head, info, i);
+	}
+	(void)head;
 }
-*/
+
 t_tetrimino *tetriminos_into_list(char **tetriminos)
 {
 	t_tetrimino	*head;
@@ -84,7 +103,7 @@ t_tetrimino *tetriminos_into_list(char **tetriminos)
 	while (tetriminos[i])
 	{
 		push_back_piece(head, i + 1);
-		//fill_piece(head, tetriminos[i], i);
+		fill_piece(&head, tetriminos[i], i);
 		i++;
 	}
 	ft_strdel(tetriminos);
