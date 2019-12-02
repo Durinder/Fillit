@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 11:07:05 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/29 17:21:53 by bbehm            ###   ########.fr       */
+/*   Updated: 2019/12/02 16:50:08 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,31 +59,31 @@ int	main(int argc, char **argv)
 	}
 	map = new_map(tetriminos);
 	i = 0;
-	while (map.coordinates[i])
+	while (map.xy[i])
 	{
-		ft_putstr(map.coordinates[i]);
+		ft_putstr(map.xy[i]);
 		i++;
 	}
 	head = tetriminos_into_list(tetriminos);
 
-	while (head)
-	{
-		ft_putnbr(head->is_placed);
-		head = head->next;
-	}
-	/*
-	while (head)
-	{
-		ft_putnbr(head->one[0]);
-		ft_putnbr(head->one[1]);
-		ft_putnbr(head->two[0]);
-		ft_putnbr(head->two[1]);
-		ft_putnbr(head->three[0]);
-		ft_putnbr(head->three[1]);
-		ft_putnbr(head->four[0]);
-		ft_putnbr(head->four[1]);
-		head = head->next;
-	}*/
+//	while (head)
+//	{
+//		ft_putnbr(head->is_placed);
+//		head = head->next;
+//	}
+//	while (head)
+//	{
+//		ft_putnbr(head->one[0]);
+//		ft_putnbr(head->one[1]);
+//		ft_putnbr(head->two[0]);
+//		ft_putnbr(head->two[1]);
+//		ft_putnbr(head->three[0]);
+//		ft_putnbr(head->three[1]);
+//		ft_putnbr(head->four[0]);
+//		ft_putnbr(head->four[1]);
+//		head = head->next;
+//	}
+	solver(map, head);
 //	while (1) {};
 	return (0);
 }
