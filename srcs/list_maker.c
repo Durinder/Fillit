@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:31:54 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/02 16:42:31 by bbehm            ###   ########.fr       */
+/*   Updated: 2019/12/04 17:22:13 by bbehm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static t_tetrimino	*create_piece(short i)
 {
 	t_tetrimino	*piece;
-	
+
 	if (!(piece = (t_tetrimino *)malloc(sizeof(t_tetrimino))))
 		return (NULL);
 	piece->is_placed = 0;
@@ -33,7 +33,7 @@ static t_tetrimino	*create_piece(short i)
 	return (piece);
 }
 
-static void	push_back_piece(t_tetrimino *head, short i)
+static void			push_back_piece(t_tetrimino *head, short i)
 {
 	t_tetrimino	*new_piece;
 	t_tetrimino	*current;
@@ -45,7 +45,7 @@ static void	push_back_piece(t_tetrimino *head, short i)
 	current->next = new_piece;
 }
 
-static void fill_more(t_tetrimino *head, int info[4][2], short i)
+static void			fill_more(t_tetrimino *head, int info[4][2], short i)
 {
 	while (i > 0)
 	{
@@ -60,23 +60,14 @@ static void fill_more(t_tetrimino *head, int info[4][2], short i)
 	head->three[1] = (info[2][1] - info[0][1]);
 	head->four[0] = (info[3][0] - info[0][0]);
 	head->four[1] = (info[3][1] - info[0][1]);
-	/*ft_putnbr(head->one[0]);
-	ft_putnbr(head->one[1]);
-	ft_putnbr(head->two[0]);
-	ft_putnbr(head->two[1]);
-	ft_putnbr(head->three[0]);
-	ft_putnbr(head->three[1]);
-	ft_putnbr(head->four[0]);
-	ft_putnbr(head->four[1]);*/
 }
 
-#include <stdio.h>
-static void fill_piece(t_tetrimino *head, char *tetri, short i)
+static void			fill_piece(t_tetrimino *head, char *tetri, short i)
 {
-	int x;
-	int info[4][2];
-	int a;
-	int y;
+	int			x;
+	int			info[4][2];
+	int			a;
+	int			y;
 
 	x = 0;
 	a = 0;
@@ -100,7 +91,7 @@ static void fill_piece(t_tetrimino *head, char *tetri, short i)
 	fill_more(head, info, i);
 }
 
-t_tetrimino *tetriminos_into_list(char **tetriminos)
+t_tetrimino			*tetriminos_into_list(char **tetriminos)
 {
 	t_tetrimino	*head;
 	short		i;
