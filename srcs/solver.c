@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 16:27:03 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/02 18:24:39 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/12/05 13:43:23 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,97 @@ void	print_map(char **array)
 		ft_putstr(*array++);
 }
 
-int		solver(t_map map, t_tetrimino *head)
-{	
-	t_tetrimino *tmp;
+char	**save_map(t_map map)
+{
+	char	**array;
 	short	i;
 	short	j;
 
-	tmp = head;
+	array = create_map(map.size);
 	i = 0;
-	while (tmp != NULL)
+	j = 0;
+	while (i < map.size)
 	{
-		ft_putchar(tmp->alpha);
-		ft_putnbr(tmp->one[0]);
-		ft_putnbr(tmp->one[1]);
-		ft_putnbr(tmp->two[0]);
-		ft_putnbr(tmp->two[1]);
-		ft_putnbr(tmp->three[0]);
-		ft_putnbr(tmp->three[1]);
-		ft_putnbr(tmp->four[0]);
-		ft_putnbr(tmp->four[1]);
-		ft_putchar('\n');
-		tmp = tmp->next;
+		j = 0;
+		while (j < map.size)
+		{
+			array[i][j] = map.xy[i][j];
+			j++;
+		}
+		i++;
 	}
-	tmp = head;
+	return (array);
+}
+
+int		place_piece(t_map map, t_tetrimino *tmp, short i, short j)
+{
+	if (tmp->one[0] + i < map.size && tmp->one[1] + j < map.size &&
+			tmp->two[0] + i < map.size && tmp->two[1] + j < map.size &&
+			tmp->three[0] + i < map.size && tmp->three[1] + j < map.size &&
+			tmp->four[0] + i < map.size && tmp->four[1] + j < map.size// &&
+		/*	tmp->one[0] + i >= 0 && tmp->one[1] + j >= 0 &&
+			tmp->two[0] + i >= 0 && tmp->two[1] + j >= 0 &&
+			tmp->three[0] + i >= 0 && tmp->three[1] + j >= 0 &&
+			tmp->four[0] + i >= 0 && tmp->four[1] + j >= 0*/)
+	{
+		if (map.xy[i + tmp->one[0]][j + tmp->one[1]] == '.' && 
+			map.xy[i + tmp->two[0]][j + tmp->two[1]] == '.' &&
+			map.xy[i + tmp->three[0]][j + tmp->three[1]] == '.' &&
+			map.xy[i + tmp->four[0]][j + tmp->four[1]] == '.')
+		{
+			map.xy[i + tmp->one[0]][j + tmp->one[1]] = tmp->alpha;
+			map.xy[i + tmp->two[0]][j + tmp->two[1]] = tmp->alpha;
+			map.xy[i + tmp->three[0]][j + tmp->three[1]] = tmp->alpha;
+			map.xy[i + tmp->four[0]][j + tmp->four[1]] = tmp->alpha;
+			tmp->is_placed = 1;
+	//		ft_putendl("piece placed");
+			return (1);
+		}
+	}
+	return (0);
+}
+
+int		check_solution(t_tetrimino *node, t_map map)
+{
+	short	i;
+	short	j;
+	char	alpha;
+
+	i = 0;
+	alpha = 'A';
+	while (i < map.size)
+	{
+		j = 0;
+		while (j < map.size)
+		{
+			if (map.xy[i][j] == alpha)
+			{
+				alpha++;
+				i = 0;
+				j = 0;
+			}
+			j++;
+		}
+		i++;
+	}
+	while (node->next != NULL)
+		node = node->next;
+	if (node->alpha == alpha && node->is_placed == 1)
+	{
+		print_map(map.xy);
+		return (1);
+	}
+	return (0);
+}
+
+int		solver(t_map map, t_tetrimino *head/*, short i, short j*/)
+{
+	t_tetrimino *current;
+	t_map		save;
+	short		i;
+	short		j;
+	
+	i = 0;
 	while (i < map.size)
 	{
 		j = 0;
@@ -49,35 +117,16 @@ int		solver(t_map map, t_tetrimino *head)
 		{
 			if (map.xy[i][j] == '.')
 			{
-				while (tmp->is_placed == 1 && tmp->next != NULL)
-					tmp = tmp->next;
-	//			ft_putchar(tmp->alpha);
-				if (tmp->is_placed == 0)
+				current = head;
+				while (current->is_placed == 1 && current->next != NULL)
+					current = current->next;
+				save.xy = save_map(map);
+				if (place_piece(map, current, i, j) == 1)
 				{
-					if (tmp->one[0] + i < map.size && tmp->one[1] + j < map.size &&
-							tmp->two[0] + i < map.size && tmp->two[1] + j < map.size &&
-							tmp->three[0] + i < map.size && tmp->three[1] + j < map.size &&
-							tmp->four[0] + i < map.size && tmp->four[1] + j < map.size// &&
-						/*	tmp->one[0] + i >= 0 && tmp->one[1] + j >= 0 &&
-							tmp->two[0] + i >= 0 && tmp->two[1] + j >= 0 &&
-							tmp->three[0] + i >= 0 && tmp->three[1] + j >= 0 &&
-							tmp->four[0] + i >= 0 && tmp->four[1] + j >= 0*/)
+					if (solver(map, head) != 1)
 					{
-						if (map.xy[i + tmp->one[0]][j + tmp->one[1]] == '.' && 
-							map.xy[i + tmp->two[0]][j + tmp->two[1]] == '.' &&
-							map.xy[i + tmp->three[0]][j + tmp->three[1]] == '.' &&
-							map.xy[i + tmp->four[0]][j + tmp->four[1]] == '.')
-						{
-							map.xy[i + tmp->one[0]][j + tmp->one[1]] = tmp->alpha;
-							map.xy[i + tmp->two[0]][j + tmp->two[1]] = tmp->alpha;
-							map.xy[i + tmp->three[0]][j + tmp->three[1]] = tmp->alpha;
-							map.xy[i + tmp->four[0]][j + tmp->four[1]] = tmp->alpha;
-							tmp->is_placed = 1;
-					//		ft_putendl("piece placed");
-					//		print_map(map.xy);
-							solver(map, head);
-							return (0);
-						}
+						current->is_placed = 0;
+						solver(save, head);
 					}
 				}
 			}
@@ -85,26 +134,18 @@ int		solver(t_map map, t_tetrimino *head)
 		}
 		i++;
 	}
-	tmp = head;
-	while (tmp->is_placed == 1 && tmp->next != NULL)
+	if (check_solution(current = head, map) == 1)
 	{
-		tmp = tmp->next;
+		ft_putendl("here?");
+		return (1);
 	}
-	if (tmp->is_placed == 0)
+	map.xy = create_map(map.size += 1);
+	current = head;
+	while (current->next != NULL)
 	{
-		ft_putendl("new map");
-		map.xy = create_map(map.size += 1);
-		tmp = head;
-		while (tmp->next != NULL)
-		{
-			if (tmp->is_placed == 1) // TAA ON VIRHEELLINEN!
-				solver(map, head); // TAA ON VIRHEELLINEN!
-			tmp->is_placed = 0;
-			tmp = tmp->next;
-		}
+		current->is_placed = 0;
+		current = current->next;
 		solver(map, head);
-		return (0);
 	}
-	print_map(map.xy);
 	return (0);
 }
