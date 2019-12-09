@@ -6,12 +6,11 @@
 /*   By: jhallama <jhallama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 16:27:03 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/09 15:33:30 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/12/09 15:46:01 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
 void	free_map(t_map map)
 {
