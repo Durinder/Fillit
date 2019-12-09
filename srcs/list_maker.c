@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:31:54 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/04 17:22:13 by bbehm            ###   ########.fr       */
+/*   Updated: 2019/12/09 12:28:34 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,15 @@ static void			fill_piece(t_tetrimino *head, char *tetri, short i)
 	x = 0;
 	a = 0;
 	y = 0;
-	while (x < 19)
+	while (x <= 19)
 	{
-		while (x < 19 && (tetri[x] > 'Z' || tetri[x] < 'A'))
+		while (x <= 19 && (tetri[x] > 'Z' || tetri[x] < 'A'))
 		{
 			if (tetri[x] == '\n')
 				y++;
 			x++;
 		}
-		if (x < 19 && tetri[x] >= 'A' && tetri[x] <= 'Z')
+		if (x <= 19 && tetri[x] >= 'A' && tetri[x] <= 'Z')
 		{
 			info[a][0] = y;
 			info[a][1] = x % 5;

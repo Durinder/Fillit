@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 13:37:40 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/02 17:03:08 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/12/09 15:32:12 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ int				map_validator(char **map);
 t_map			new_map(char **tetriminos);
 char			**create_map(short size);
 t_tetrimino		*tetriminos_into_list(char **tetriminos);
-int				solver(t_map map, t_tetrimino *head);
+int				solver(t_map map, t_tetrimino *head, short i, short j);
+void			print_map(char **array);
+void			retrieve_map(t_map src, t_map dst);
+char			**save_map(t_map map, t_map save);
 void			print_map(char **array);
 
 #endif
