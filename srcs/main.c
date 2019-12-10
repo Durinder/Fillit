@@ -6,65 +6,72 @@
 /*   By: jhallama <jhallama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 11:07:05 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/09 15:40:02 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/12/10 11:39:02 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include "../libft/libft.h"
 #include <fcntl.h>
-#include <stdio.h>
 
-int	main(int argc, char **argv)
+void	send_valid_to_solver(char **tetriminos)
 {
-	char	**tetriminos;
-	char	buf[BUFF_SIZE + 1];
-	int		fd;
-	int		ret;
-	t_map	map;
+	t_map		map;
 	t_tetrimino	*head;
+	t_tetrimino	*current;
 
-	if (argc != 2)
-	{
-		//display usage!
-		return (0);
-	}
-	else
-	{
-		tetriminos = NULL;
-		fd = open(argv[1], O_RDONLY);
-		ret = read(fd, buf, BUFF_SIZE);
-		buf[ret] = '\0';
-		ret = close(fd);
-		tetriminos = create_tetriminos(buf);
-		if (tetriminos == NULL)
-		{
-			ft_putendl("create_tetriminos error");
-			return (0);
-		}
-	}
-	if (!(map_validator(tetriminos)))
-		ft_putendl("HERE error");
-	else
-	{
-		tetriminos_into_alphabet(tetriminos);
-		ft_putendl("Solver is not done yet!");
-	}
 	map = new_map(tetriminos);
 	head = tetriminos_into_list(tetriminos);
 	while (solver(map, head, -1, -1) == 0)
 	{
-		int xd = 0;
-		while (xd < map.size)
-		{
-			free(map.xy[xd]);
-			xd++;
-		}
-		map.xy = NULL;
+		free_map(map);
 		map.size++;
 		map.xy = create_map(map.size);
-		printf("%d\n", map.size);
 	}
-	while (1) {};
+	while (head != NULL)
+	{
+		current = head;
+		head = current->next;
+		free(current);
+	}
+}
+
+char	**reader(char **tetriminos, char *input)
+{
+	char	buf[BUFF_SIZE + 1];
+	int		fd;
+	int		ret;
+
+	fd = open(input, O_RDONLY);
+	ret = read(fd, buf, BUFF_SIZE);
+	buf[ret] = '\0';
+	ret = close(fd);
+	tetriminos = create_tetriminos(buf);
+	if (tetriminos == NULL)
+	{
+		ft_putendl("error");
+		exit(1);
+	}
+	return (tetriminos);
+}
+
+int		main(int argc, char **argv)
+{
+	char	**tetriminos;
+
+	tetriminos = NULL;
+	if (argc != 2)
+	{
+		ft_putstr("usage: ./fillit [file_with_tetriminos]\n");
+		exit(1);
+	}
+	else
+		tetriminos = reader(tetriminos, argv[1]);
+	if (!(map_validator(tetriminos)))
+	{
+		ft_putendl("error");
+		exit(1);
+	}
+	send_valid_to_solver(tetriminos_into_alphabet(tetriminos));
 	return (0);
 }
