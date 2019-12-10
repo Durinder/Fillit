@@ -6,7 +6,7 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 13:37:40 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/09 15:32:12 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/12/10 11:44:12 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ typedef struct	s_tetrimino {
 	char				alpha;
 	struct s_tetrimino	*next;
 }				t_tetrimino;
-
-
 
 char			**create_tetriminos(char *input);
 void			tetriminos_into_alphabet(char **tetriminos);
