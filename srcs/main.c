@@ -6,7 +6,7 @@
 /*   By: jhallama <jhallama@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 11:07:05 by jhallama          #+#    #+#             */
-/*   Updated: 2019/12/10 11:39:02 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/12/10 12:08:51 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	send_valid_to_solver(char **tetriminos)
 		map.size++;
 		map.xy = create_map(map.size);
 	}
+	free_map(map);
 	while (head != NULL)
 	{
 		current = head;
@@ -73,5 +74,6 @@ int		main(int argc, char **argv)
 		exit(1);
 	}
 	send_valid_to_solver(tetriminos_into_alphabet(tetriminos));
+	while (1) { };
 	return (0);
 }
