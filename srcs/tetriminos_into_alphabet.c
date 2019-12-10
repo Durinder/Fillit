@@ -6,13 +6,13 @@
 /*   By: jhallama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 13:00:43 by jhallama          #+#    #+#             */
-/*   Updated: 2019/11/26 13:24:08 by jhallama         ###   ########.fr       */
+/*   Updated: 2019/12/10 11:51:58 by jhallama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	tetriminos_into_alphabet(char **tetriminos)
+char	**tetriminos_into_alphabet(char **tetriminos)
 {
 	char	alpha;
 	short	i;
@@ -32,4 +32,5 @@ void	tetriminos_into_alphabet(char **tetriminos)
 		i++;
 		alpha++;
 	}
+	return (tetriminos);
 }
