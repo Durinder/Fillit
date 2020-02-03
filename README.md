@@ -4,7 +4,8 @@ Fillit is a project for the search of an optimal solution among a very large num
 Input is 1-26 tetris pieces, where each one is a 4x4 box in which '#' is part of a tetris piece and '.' is empty space.
 Pieces are separated by a single newline.
 
-Example of a valid input below:
+Example of a valid input:
+
 "####
 ....
 ....
